@@ -1,0 +1,27 @@
+.search-bar {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+}	
+
+.search-bar input {
+    background-color: #222;
+    border-radius: 40px;
+    border-style: solid;
+    margin: 0px 10px;
+    color: white;
+    padding-left: 10px;
+    min-height: 20px;
+}
+
+.search-bar input:focus {
+    border-color: #228dff;
+    outline: none;   
+}
+
+.search-bar .icono-input {
+    opacity: 0.5;
+    left: 10px;
+    top: 50%;
+    pointer-events: none; /* Para que el clic no lo afecte */
+  }

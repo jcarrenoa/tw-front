@@ -44,3 +44,5 @@ export function TwitterFollowCard({
     </article>
   )
 }
+
+export default TwitterFollowCard
