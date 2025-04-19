@@ -1,5 +1,5 @@
+import TFCCCS from './TwitterFollowCard.module.css'
 import { useState, ReactNode } from 'react'
-import './TwitterFollowCard.css'
 
 interface TwitterFollowCardProps {
   children: ReactNode
@@ -23,10 +23,10 @@ export function TwitterFollowCard({
   }
 
   return (
-    <article className="tw-followCard">
-      <header className="tw-followCard-header">
+    <article className={TFCCCS['tw-followCard']}>
+      <header className={TFCCCS['tw-followCard-header']}>
         <img
-          className="tw-followCard-img"
+          className={TFCCCS['tw-followCard-img']}
           src={`https://unavatar.io/${userName}`}
           alt="logo"
         />
@@ -36,9 +36,9 @@ export function TwitterFollowCard({
         </div>
       </header>
       <aside>
-        <button className={isFollowingClass} onClick={handleFollowClick}>
-          <span className="tw-followCard-text">{isFollowingText}</span>
-          <span className="tw-followCard-noFollowing">Dejar de Seguir</span>
+        <button className={TFCCCS[isFollowingClass]} onClick={handleFollowClick}>
+          <span className={TFCCCS['tw-followCard-text']}>{isFollowingText}</span>
+          <span className={TFCCCS['tw-followCard-noFollowing']}>Dejar de Seguir</span>
         </button>
       </aside>
     </article>

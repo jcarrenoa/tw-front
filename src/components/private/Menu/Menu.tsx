@@ -1,4 +1,4 @@
-import './Menu.css';
+import MCSS from './Menu.module.css';
 import { useState } from 'react';
 import { MenuButton } from '../MenuButton/MenuButton';
 
@@ -10,7 +10,7 @@ export function Menu() {
     };
 
     return (
-        <div>
+        <div className={MCSS.menu}>
             <MenuButton icon='fas fa-house' text='Home' selected={selected} OnSelected={handleSelected}></MenuButton>
             <MenuButton icon='fas fa-hashtag' text='Explore' selected={selected} OnSelected={handleSelected}></MenuButton>
             <MenuButton icon='fas fa-bell' text='Notifications' selected={selected} OnSelected={handleSelected}></MenuButton>
