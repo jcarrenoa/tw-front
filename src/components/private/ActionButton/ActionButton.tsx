@@ -1,4 +1,4 @@
-import './ActionButton.css'
+import  ABCSS from './ActionButton.module.css'
 
 interface ActionButtonProps {
     icon: string
@@ -8,7 +8,7 @@ interface ActionButtonProps {
 
 export function ActionButton({ icon, count, tipo }: ActionButtonProps) {
     return (
-        <button className={ tipo }>
+        <button className={ ABCSS[tipo] }>
             <i className={ icon }></i>
             <span>{ count }</span>
         </button>

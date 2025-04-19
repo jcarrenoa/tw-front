@@ -1,4 +1,4 @@
-import './MenuButton.css';
+import MBCSS from './MenuButton.module.css';
 
 interface MenuButtonProps {
     icon: string;
@@ -13,9 +13,9 @@ export function MenuButton({ icon, text, selected, OnSelected }: MenuButtonProps
     const spanClass = isActive ? 'is-selected' : '';
 
     return (
-        <button className="menu-button" onClick={() => OnSelected(text)}>
+        <button className={MBCSS['menu-button']}onClick={() => OnSelected(text)}>
             <i className={ icon }></i>
-            <span className={ spanClass }>{text}</span>
+            <span className={ MBCSS[spanClass] }>{text}</span>
         </button>
     );
 }
