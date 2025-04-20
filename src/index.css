@@ -1,9 +1,22 @@
+:root {
+  --bg-color: #ffffff;
+  --text-color: #0f1419;
+  --secondary-text: #536471;
+  --hover-bg: #f7f9f9;
+}
+
+body.dark {
+  --bg-color: #15202b;
+  --text-color: #e1e8ed;
+  --secondary-text: #8899a6;
+  --hover-bg: #192734;
+}
+
 body {
   margin: 0;
-  background: #222;
-  font-family: system-ui;
-  display: grid;
-  place-items: center;
-  color: white;
-  min-height: 10vh;
+  font-family: 'Chirp', 'Helvetica Neue', 'Segoe UI', Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
+

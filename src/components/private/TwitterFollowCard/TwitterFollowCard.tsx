@@ -32,7 +32,7 @@ export function TwitterFollowCard({
         />
         <div>
           <strong>{children}</strong>
-          <span>{userName}</span>
+          <span>@{userName}</span>
         </div>
       </header>
       <aside>

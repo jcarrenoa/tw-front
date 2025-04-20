@@ -3,9 +3,9 @@ import AButton from '@components/private/ActionButton/ActionButton';
 
 interface PostProps {
     user: string
-    userName?: string
+    userName: string
     time: string
-    media: string | null
+    media?: string | null
 }
 
 export function Post({ user, userName, time, media }: PostProps) {
@@ -29,3 +29,5 @@ export function Post({ user, userName, time, media }: PostProps) {
         </article>
     )
  }
+
+export default Post
