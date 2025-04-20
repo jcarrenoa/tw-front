@@ -1,0 +1,13 @@
+.container {
+    padding: 20px;
+  }
+  
+.toggle-btn {
+    background-color: var(--hover-bg);
+    color: var(--text-color);
+    border: none;
+    padding: 10px 16px;
+    border-radius: 9999px;
+    cursor: pointer;
+    font-weight: bold;
+}
