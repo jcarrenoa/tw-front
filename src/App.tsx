@@ -28,7 +28,7 @@ export function App() {
       </button>
     </div>
       { login ? 
-        <Private/>
+        <Private mode={darkMode} />
       :
         <Public />
     }

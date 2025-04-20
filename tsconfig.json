@@ -11,6 +11,7 @@
       "@hooks/*": ["src/hooks/*"],
       "@utils/*": ["src/utils/*"],
       "@services/*": ["src/services/*"],
+      "@media/*": ["src/assets/media/*"],
     },
     "jsx": "react-jsx",
     "strict": true,

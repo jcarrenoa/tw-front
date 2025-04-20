@@ -1,10 +1,37 @@
+import ICSS from './index.module.css'
+import Menu from '@components/private/Menu/Menu'
+import Post from '@components/private/Post/Post'
+import FollowCard from '@components/private/TwitterFollowCard/TwitterFollowCard'
+import logo_n from '@media/x_negro.png'
+import logo_b from '@media/x_blanco.png'
 import React from 'react'
 
-function Private() { 
+interface type {
+  mode: boolean
+}
+
+function Private({ mode }: type) { 
+
+    const logo = mode ? logo_b : logo_n
+
     return (
-      <>
-        <h1>Private</h1>
-      </>
+      <main className={ICSS['container']}>
+        <header className={ICSS['menu']}>
+          <div className={ICSS['logo-container']}>
+            <img className= {ICSS['logo']} src={logo} alt="logo-x" />
+          </div>
+          <Menu/>
+        </header>
+        <section className={ICSS['post-container']}>
+          <Post user='Aaron Rodriguez' userName='jcarrenoa' time='hace 2 horas'></Post>
+        </section>
+        <section className={ICSS['info-container']}>
+          <div className={ICSS['followsCards']}>
+            <FollowCard userName='jcarrenoa' initialIsFollowing={false}>Aaron Rodriguez</FollowCard>
+            <FollowCard userName='django' initialIsFollowing={true}>Django Python</FollowCard>
+          </div>
+        </section>
+      </main>
     );
 }
 

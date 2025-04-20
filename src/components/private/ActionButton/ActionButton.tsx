@@ -8,7 +8,7 @@ interface ActionButtonProps {
 
 export function ActionButton({ icon, count, tipo }: ActionButtonProps) {
     return (
-        <button className={ ABCSS[tipo] }>
+        <button className={ `${ABCSS['btn']} ${ABCSS[tipo]}` }>
             <i className={ icon }></i>
             <span>{ count }</span>
         </button>
