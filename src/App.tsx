@@ -22,7 +22,7 @@ export function App() {
   
   return (
     <>
-    <div className="container">
+    <div className="container floating-toggle" title="Cambiar modo">
       <button className="toggle-btn" onClick={() => setDarkMode(!darkMode)}>
         {darkMode ? <i className="fas fa-sun"></i>: <i className="fas fa-moon"></i> }
       </button>
