@@ -20,7 +20,6 @@ export function Login({setLogin}: Props) {
 			return;
 		}
 		login(loginUser, loginPassword).then((res) => {
-			console.log(res)
 			if (res.message === 'ok') {
 				setLogin(res.data.username, loginPassword)
 				setAuthToken(res.data.token)
