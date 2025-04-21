@@ -7,9 +7,10 @@ interface PostProps {
     time: string
     media?: string | null
     children: string | React.ReactNode
+    tweetId?: string
 }
 
-export function Post({ user, userName, time, media, children }: PostProps) {
+export function Post({ user, userName, time, media, children, tweetId }: PostProps) {
     return (
         <article className={PCSS['post']}>
             <img className={PCSS['img-user']} src={`https://unavatar.io/${userName}`} alt="user-post" />
@@ -21,7 +22,7 @@ export function Post({ user, userName, time, media, children }: PostProps) {
                 <p>{ children }</p>
                 {media && <img src={media} alt="post-media" />}
                 <div className={PCSS['post-actions']}>
-                    <AButton icon="far fa-comment" count={0} tipo='comment' />
+                    <AButton icon="far fa-comment" count={0} tipo='comment' tweetId={ tweetId }/>
                     <AButton icon="fas fa-retweet" count={0} tipo='retweet' />
                     <AButton icon="far fa-heart" count={0} tipo='like'/>
                     <AButton icon="fas fa-chart-bar" count={0} tipo='chart' />

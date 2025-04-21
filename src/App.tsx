@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router';
 import Nomatch from './app/Nomatch';
 import useAuth from './hooks/useAuth';
 import Home from './app/private/home/Home';
+import Comments from './app/private/Comments/Comments';
 import Register from './app/public/register/Register';
 import Login from './app/public/login/Login';
 
@@ -52,6 +53,7 @@ export function App() {
         />
         <Route path="/signup" element={<Register />} />
         <Route path="/recover-password" element={<Nomatch></Nomatch>} />
+        <Route path="/comments/:id" element={<Comments/>} />
         <Route path="*" element={<Nomatch />} />
       </Routes>
     </>
