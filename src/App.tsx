@@ -5,7 +5,8 @@ import Nomatch from './app/Nomatch';
 import Home from './app/private/home/Home';
 import HomePublic from './app/public/home/Home';
 import useAuth from './hooks/useAuth';
-import Login from './app/public/login/Login';
+import Login from './app/public/login/Login'; //login, viejo, no se que hace esto
+import LoginRegisterForm from './app/public/LoginRegisterForm/LoginRegisterForm'; //este es el login  +register que yo hice
 
 import CreatePostForm from './components/private/CreatePostForm/CreatePostForm';
 
@@ -44,7 +45,7 @@ export function App() {
 				<Route
 					path="/"
 					element={
-						isLogged ? <Home mode={darkMode} /> : <HomePublic />
+						isLogged ? <Home mode={darkMode} /> : <LoginRegisterForm />
 					}
 				/>
 				<Route path="/login" element={<Login login={loginUser} />} />
