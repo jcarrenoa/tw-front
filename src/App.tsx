@@ -4,8 +4,10 @@ import { Route, Routes } from 'react-router';
 import Nomatch from './app/Nomatch';
 import HomePublic from './app/public/home/Home';
 import useAuth from './hooks/useAuth';
-import Login from './app/public/login/Login';
-import Home  from './app/private/home/Home';
+import Login from './app/public/login/Login'; //login, viejo, no se que hace esto
+import LoginRegisterForm from './app/public/LoginRegisterForm/LoginRegisterForm'; //este es el login  +register que yo hice
+import CreatePostForm from './components/private/CreatePostForm/CreatePostForm';
+import Home from './app/private/home/Home';
 
 export function App() {
 	const { user, isLogged, loginUser, logoutUser } = useAuth();
@@ -42,7 +44,7 @@ export function App() {
 				<Route
 					path="/"
 					element={
-						isLogged ? <Home mode={darkMode} /> : <HomePublic />
+						isLogged ? <Home mode={darkMode} /> : <LoginRegisterForm />
 					}
 				/>
 				<Route path="/login" element={<Login login={loginUser} />} />
