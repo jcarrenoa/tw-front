@@ -23,10 +23,27 @@ function Private({ mode }: type) {
           <Menu/>
         </header>
         <section className={ICSS['post-container']}>
-          <Post user='Aaron Rodriguez' userName='jcarrenoa' time='hace 2 horas'></Post>
+          <header className={ICSS['item']}>
+            <ul className={ICSS['post-list']}>
+              <li className={ICSS['active']}>Para ti</li>
+              <li>Siguiendo</li>
+            </ul>
+          </header>
+          <div className={`${ICSS['write-post']} ${ICSS['item']}`}>
+            <img className={ICSS['img-user']} src={`https://unavatar.io/${'jcarrenoa'}`} alt="write-user-post" />
+            <div className={ICSS['write-post-container']}>
+              <textarea className={ICSS['text-area']} placeholder="¿Qué está pasando?"></textarea>
+              <div className={ICSS['post-actions']}>
+                <button className={ICSS['btn-post']}>Publicar</button>
+              </div>
+            </div>
+          </div>
+          <div className={`${ICSS['posts']} ${ICSS['item']}`}>
+            <Post user='Aaron Rodriguez' userName='jcarrenoa' time='hace 2 horas'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi, sapiente fugit neque maiores sunt dolores laborum dolor corrupti debitis nihil sint iusto cupiditate ad maxime alias animi? Itaque, suscipit veniam.</Post>
+          </div>
         </section>
         <section className={ICSS['info-container']}>
-          <div className={ICSS['followsCards']}>
+          <div className={`${ICSS['follows-cards']} ${ICSS['item']}`}>
             <FollowCard userName='jcarrenoa' initialIsFollowing={false}>Aaron Rodriguez</FollowCard>
             <FollowCard userName='django' initialIsFollowing={true}>Django Python</FollowCard>
           </div>

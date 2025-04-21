@@ -6,18 +6,19 @@ interface PostProps {
     userName: string
     time: string
     media?: string | null
+    children: string | React.ReactNode
 }
 
-export function Post({ user, userName, time, media }: PostProps) {
+export function Post({ user, userName, time, media, children }: PostProps) {
     return (
         <article className={PCSS['post']}>
-            <img className={PCSS['img-user']} src="https://unavatar.io/unknow" alt="user-post" />
+            <img className={PCSS['img-user']} src={`https://unavatar.io/${userName}`} alt="user-post" />
             <div className={PCSS['post-container']}> 
                 <div className={PCSS['post-header']}>
                     <strong>{ user }</strong>
                     <span>@{ userName } · { time }</span>
                 </div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio voluptate provident necessitatibus vitae rem eum illum nam pariatur praesentium? Odio modi aliquam earum porro numquam temporibus? Ea dolorum sed ipsa?</p>
+                <p>{ children }</p>
                 {media && <img src={media} alt="post-media" />}
                 <div className={PCSS['post-actions']}>
                     <AButton icon="far fa-comment" count={0} tipo='comment' />
