@@ -34,3 +34,11 @@ export async function getTweetComments(tweetId: string) {
 	const response = await api.get(`/tweets/${tweetId}`);
 	return response.data;
 }
+
+export async function createComment(tweetId: string, comment: string) {
+  const response = await api.post('/tweets/comments', {
+    tweetId,
+    comment,
+  });
+  return response.data;
+}

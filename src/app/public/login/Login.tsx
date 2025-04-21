@@ -21,6 +21,10 @@ export function Login({setLogin}: Props) {
 		}
 		login(loginUser, loginPassword).then((res) => {
 			if (res.message === 'ok') {
+
+				localStorage.setItem('token', res.data.token);
+				localStorage.setItem('user', res.data.username);
+				
 				setLogin(res.data.username, loginPassword)
 				setAuthToken(res.data.token)
 				navigate('/')
