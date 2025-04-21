@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getTweetComments } from '../../../http/tweets'
 import './Comments.module.css';
+import { useParams } from 'react-router-dom';
 
 interface Comment {
   id: string;
@@ -9,18 +10,15 @@ interface Comment {
   createdAt: string;
 }
 
-interface Props {
-  tweetId: string;
-}
-
-export default function TweetCommentsView({ tweetId }: Props) {
+export default function TweetCommentsView() {
+  const { tweetId } = useParams();
   const [comments, setComments] = useState<Comment[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const load = async () => {
       try {
-        const data = await getTweetComments(tweetId);
+        const data = await getTweetComments(tweetId!);
         setComments(data.comments);
       } catch (err) {
         console.error('Error al cargar los comentarios:', err);

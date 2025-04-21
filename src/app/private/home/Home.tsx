@@ -108,7 +108,7 @@ function Home({ mode, user }: type) {
           <div className={`${ICSS['posts']} ${ICSS['item']}`}>
             {posts.map((post) => {
               return (
-                <Post key={post._id} user={post.user.name} userName={post.user.username} time={post.createdAt}>
+                <Post key={post._id} user={post.user.name} userName={post.user.username} time={post.createdAt} tweetId={post._id}>
                   {post.content}
                 </Post>
               )
