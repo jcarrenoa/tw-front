@@ -1,9 +1,8 @@
 import React from 'react';
 import LRFCSS from './Login.module.css';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { setAuthToken, login } from '@http/user'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router';
 
 interface Props {
 	setLogin: (username: string, password: string) => void;
@@ -59,7 +58,7 @@ export function Login({setLogin}: Props) {
 			/>
 			<div className={LRFCSS['btn-container']}>
 				<button className={LRFCSS['btn']} type="submit">Iniciar sesión</button>
-				<Link className={LRFCSS['no-register']} to="/register">¿No tienes cuenta?</Link>
+				<Link className={LRFCSS['no-register']} to="/signup">¿No tienes cuenta?</Link>
 			</div>
 		</form>
 	</div>
