@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import { Route, Routes } from 'react-router';
 import Nomatch from './app/Nomatch';
-import Home from './app/private/home/Home';
 import HomePublic from './app/public/home/Home';
 import useAuth from './hooks/useAuth';
 import Login from './app/public/login/Login';
+import Home  from './app/private/home/Home';
 
 export function App() {
 	const { user, isLogged, loginUser, logoutUser } = useAuth();
@@ -48,7 +48,7 @@ export function App() {
 				<Route path="/login" element={<Login login={loginUser} />} />
 				<Route path="/register" element={<Nomatch></Nomatch>} />
 				<Route path="/recover-password" element={<Nomatch></Nomatch>} />
-				<Route path="/posts" element={<Nomatch></Nomatch>}>
+				<Route path="/posts" element={<Home mode={darkMode}></Home>}>
 					<Route path="me" element={<Nomatch></Nomatch>} />
 					<Route path="all" element={<Nomatch></Nomatch>} />
 				</Route>

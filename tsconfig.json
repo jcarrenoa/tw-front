@@ -12,6 +12,7 @@
       "@utils/*": ["src/utils/*"],
       "@services/*": ["src/services/*"],
       "@media/*": ["src/assets/media/*"],
+      "@http/*": ["src/http/*"],
     },
     "jsx": "react-jsx",
     "strict": true,
