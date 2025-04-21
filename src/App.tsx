@@ -7,6 +7,8 @@ import useAuth from './hooks/useAuth';
 import Login from './app/public/login/Login';
 import Home  from './app/private/home/Home';
 
+import CreatePostForm from './components/private/CreatePostForm/CreatePostForm';
+
 export function App() {
 	const { user, isLogged, loginUser, logoutUser } = useAuth();
 	const [darkMode, setDarkMode] = useState(() => {
@@ -43,6 +45,7 @@ export function App() {
 					path="/"
 					element={
 						isLogged ? <Home mode={darkMode} /> : <HomePublic />
+						//isLogged ? <Home mode={darkMode} /> : <CreatePostForm />
 					}
 				/>
 				<Route path="/login" element={<Login login={loginUser} />} />
