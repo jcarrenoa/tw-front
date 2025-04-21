@@ -9,7 +9,7 @@ import Register from './app/public/register/Register';
 import Login from './app/public/login/Login';
 
 export function App() {
-  const { user, isLogged, loginUser, logoutUser } = useAuth();
+  const { user, isLogged, loginUser, logoutUser, isLoading } = useAuth();
   const [darkMode, setDarkMode] = useState(() => {
     return localStorage.getItem('theme') === 'light';
   });
@@ -45,7 +45,7 @@ export function App() {
           path="/"
           element={
             isLogged ? (
-              <Home mode={darkMode} user={user}></Home>
+              <Home mode={darkMode} user={user} isLoading={isLoading}></Home>
             ) : (
               <Login setLogin={loginUser} />
             )

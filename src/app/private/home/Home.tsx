@@ -15,9 +15,10 @@ interface type {
     name: string;
     username: string;
   } | null;
+  isLoading: boolean;
 }
 
-function Home({ mode, user }: type) {
+function Home({ mode, user, isLoading }: type) {
   const [users, setUsers] = useState([
     { _id: '', name: '', username: '', createdAt: '', updatedAt: '' },
   ]);
@@ -109,22 +110,26 @@ function Home({ mode, user }: type) {
             </form>
           </div>
         </div>
-        <div className={`${ICSS['posts']} ${ICSS['item']}`}>
-          {posts.map((post) => {
-            return (
-              <Post
-                key={post._id}
-                id={post._id}
-                user={post.user.name}
-                userName={post.user.username}
-                time={post.createdAt}
-                likes={post.likes}
-              >
-                {post.content}
-              </Post>
-            );
-          })}
-        </div>
+        {isLoading ? (
+          <div>Loading...</div>
+        ) : (
+          <div className={`${ICSS['posts']} ${ICSS['item']}`}>
+            {posts.map((post) => {
+              return (
+                <Post
+                  key={post._id}
+                  id={post._id}
+                  user={post.user.name}
+                  userName={post.user.username}
+                  time={post.createdAt}
+                  likes={post.likes}
+                >
+                  {post.content}
+                </Post>
+              );
+            })}
+          </div>
+        )}
       </section>
       <section className={`${ICSS['info-container']} ${ICSS['item']}`}>
         <h2>Personas para seguir</h2>
