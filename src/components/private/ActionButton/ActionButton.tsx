@@ -13,6 +13,7 @@ export function ActionButton({ icon, count, tipo, tweetId, action }: ActionButto
     const navigate = useNavigate()
 
     const handleClick = () => {
+      if (action) action();
         if (tipo === 'comment') {
             navigate(`/comments/${tweetId}`)
         } else if (tipo === 'retweet') {
@@ -22,7 +23,6 @@ export function ActionButton({ icon, count, tipo, tweetId, action }: ActionButto
         } else if (tipo === 'chart') {
             return
         }
-        if (action) action();
     }
 
   return (

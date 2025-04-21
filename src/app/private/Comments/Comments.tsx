@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getTweetComments } from '../../../http/tweets'
 import './Comments.module.css';
-import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router';
 
 interface Comment {
   id: string;
