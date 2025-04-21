@@ -85,7 +85,9 @@ function Home({ mode }: type) {
         <section className={`${ICSS['info-container']} ${ICSS['item']}`}>
           <h2>Personas para seguir</h2>
           <div className={ICSS['follows-cards']}>
-            {users.slice(0, 3).map((user) => {
+            {[...users]
+			.sort(() => Math.random() - 0.5)
+			.slice(0, 3).map((user) => {
               return (
                 <FollowCard key={user._id} userName={user.username} initialIsFollowing={false}>
                   {user.name}
