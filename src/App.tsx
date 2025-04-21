@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react'
 import Public from '@components/public/index'
+import LoginForm from '@components/public/LoginForm/LoginForm'
+import RegisterForm from '@components/public/RegisterForm/RegisterForm'
 import Private from '@components/private/index'
 import './App.css'
 
 export function App() {
-  const [login, setLogin] = useState(true);
+  const [login, setLogin] = useState(false);
   const [user, setUser] = useState({});
   const [darkMode, setDarkMode] = useState(() => {
     return localStorage.getItem("theme") === "dark";
@@ -30,7 +32,7 @@ export function App() {
       { login ? 
         <Private mode={darkMode} />
       :
-        <Public />
+        <RegisterForm />
     }
     </>
   )
