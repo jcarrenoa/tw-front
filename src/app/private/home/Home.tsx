@@ -4,15 +4,19 @@ import Post from '@components/private/Post/Post'
 import FollowCard from '@components/private/TwitterFollowCard/TwitterFollowCard'
 import logo_n from '@media/x_negro.png'
 import logo_b from '@media/x_blanco.png'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { allUsers } from '@http/user'
 import { postUser } from '@http/tweets'
 
 interface type {
   mode: boolean
+  user: {
+    name: string;
+    username: string;
+  }  | null;
 }
 
-function Home({ mode }: type) { 
+function Home({ mode, user }: type) { 
 
     const [users, setUsers] = useState([{"_id": "",
             "name": "",
@@ -64,7 +68,7 @@ function Home({ mode }: type) {
 				</ul>
         	</header>
           <div className={`${ICSS["tweet-box"]} ${ICSS['item']}`}>
-            <img className={ICSS['img']} src={`https://unavatar.io/${posts[0].user.username}`} alt="" />
+            <img className={ICSS['img']} src={user ? `https://unavatar.io/${user.username}` : `https://unavatar.io/unknow`} alt="" />
             <div className={ICSS["tweet-input-container"]}>
               <textarea placeholder="¿Qué está pasando?" className={ICSS["tweet-input"]}></textarea>
               <div className={ICSS["tweet-actions"]}>

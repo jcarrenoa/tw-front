@@ -1,56 +1,73 @@
 import { useState } from 'react';
-import './LoginRegisterForm.module.css';
+import LRFCSS from './LoginRegisterForm.module.css';
+import { Link } from 'react-router-dom';
 
 const LoginRegisterForm = () => {
-  const [loginEmail, setLoginEmail] = useState('');
-  const [loginPassword, setLoginPassword] = useState('');
   const [registerEmail, setRegisterEmail] = useState('');
   const [registerPassword, setRegisterPassword] = useState('');
-
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Logging in with', loginEmail, loginPassword);
-  };
+  const [registerName, setRegisterName] = useState('');
+  const [registerUsername, setRegisterUsername] = useState('');
+  const [registerConfirmPassword, setRegisterConfirmPassword] = useState('');
 
   const handleRegister = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Registrando con', registerEmail, registerPassword);
   };
 
-  return (
-    <div>
-      <form onSubmit={handleLogin}>
-        <h2>Iniciar sesión</h2>
-        <input
-          type="email"
-          placeholder="Correo electrónico"
-          value={loginEmail}
-          onChange={(e) => setLoginEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Contraseña"
-          value={loginPassword}
-          onChange={(e) => setLoginPassword(e.target.value)}
-        />
-        <button type="submit">Iniciar sesión</button>
-      </form>
+  const handleLogin = () => {
+    if (registerPassword !== registerConfirmPassword) {
+      alert('Las contraseñas no coinciden');
+      return;
+    }
+    if (registerEmail === '' || registerPassword === '') {
+      alert('Por favor, completa todos los campos');
+      return;
+    }
+    if (registerName === '' || registerUsername === '') {
+      alert('Por favor, completa todos los campos');
+      return;
+    }
 
-      <form onSubmit={handleRegister}>
+  };
+
+  return (
+    <div className={LRFCSS["contenedor"]}>
+      <form className={LRFCSS['form']} onSubmit={handleRegister}>
       <h2>Registrarse</h2>
       <input
+        className={LRFCSS['input']}
+        type="text"
+        placeholder="Nombre y apellido"
+        onChange={(e) => setRegisterName(e.target.value)}
+      />
+      <input
+        className={LRFCSS['input']}
+        type="text"
+        placeholder="Nombre de usuario"
+        onChange={(e) => setRegisterUsername(e.target.value)}
+      />
+      <input
+        className={LRFCSS['input']}
         type="email"
         placeholder="Correo electrónico"
-        value={registerEmail}
         onChange={(e) => setRegisterEmail(e.target.value)}
       />
       <input
+        className={LRFCSS['input']}
         type="password"
         placeholder="Contraseña"
-        value={registerPassword}
         onChange={(e) => setRegisterPassword(e.target.value)}
       />
-      <button type="submit">Registrarse</button>
+      <input
+        className={LRFCSS['input']}
+        type="password"
+        placeholder="Confirmar contraseña"
+        onChange={(e) => setRegisterConfirmPassword(e.target.value)}
+      />
+      <div className={LRFCSS['btn-container']}>
+        <button className={LRFCSS['btn']} type="submit" onClick={handleLogin}>Registrarse</button>
+	      <Link className={LRFCSS['no-register']} to="/">Ya tengo cuenta</Link>
+	    </div>
       </form>
     </div>
   );
