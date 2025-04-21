@@ -57,6 +57,12 @@ function Home({ mode }: type) {
           <Menu/>
         </header>
         <section className={ICSS['post-container']}>
+			<header className={ICSS['item']}>
+				<ul className={ICSS['post-list']}>
+				<li className={ICSS['active']}>Para ti</li>
+				<li>Siguiendo</li>
+				</ul>
+        	</header>
           <div className={`${ICSS["tweet-box"]} ${ICSS['item']}`}>
             <img className={ICSS['img']} src={`https://unavatar.io/${posts[0].user.username}`} alt="" />
             <div className={ICSS["tweet-input-container"]}>
@@ -66,7 +72,7 @@ function Home({ mode }: type) {
               </div>
             </div>
           </div>
-          <div className={`${ICSS['post-list']} ${ICSS['item']}`}>
+          <div className={`${ICSS['posts']} ${ICSS['item']}`}>
             {posts.map((post) => {
               return (
                 <Post key={post._id} user={post.user.name} userName={post.user.username} time={post.createdAt}>
