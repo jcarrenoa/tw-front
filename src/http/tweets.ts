@@ -20,3 +20,9 @@ export async function deleteTweet(tweetId: string) {
 		data: { tweetId }
 	});
 }
+
+
+export async function getTweetComments(tweetId: string) {
+	const response = await api.get(`/tweets/${tweetId}`);
+	return response.data;
+}
