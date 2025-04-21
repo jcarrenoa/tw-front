@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import LRFCSS from './LoginRegisterForm.module.css';
-import { Link } from 'react-router-dom';
+import LRFCSS from './Register.module.css';
+import { Link } from 'react-router';
 
-const LoginRegisterForm = () => {
+const Register = () => {
   const [registerEmail, setRegisterEmail] = useState('');
   const [registerPassword, setRegisterPassword] = useState('');
   const [registerName, setRegisterName] = useState('');
@@ -73,5 +73,5 @@ const LoginRegisterForm = () => {
   );
 };
 
-export default LoginRegisterForm;
+export default Register;
 
