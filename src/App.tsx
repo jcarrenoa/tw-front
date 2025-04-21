@@ -45,7 +45,6 @@ export function App() {
 					path="/"
 					element={
 						isLogged ? <Home mode={darkMode} /> : <HomePublic />
-						//isLogged ? <Home mode={darkMode} /> : <CreatePostForm />
 					}
 				/>
 				<Route path="/login" element={<Login login={loginUser} />} />
