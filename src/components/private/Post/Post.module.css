@@ -4,7 +4,6 @@
     gap: 1rem;
     padding: 1rem;
     border-radius: 0.5rem;
-    max-width: 30rem;
 }
 
 .post-header{
@@ -28,4 +27,8 @@
     align-items: center;
     margin-top: 10px;
     justify-content: space-between;
+}
+
+.post-container {
+    width: -webkit-fill-available;
 }
