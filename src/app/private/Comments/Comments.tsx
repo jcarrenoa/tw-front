@@ -12,7 +12,7 @@ interface Comment {
 }
 
 export default function TweetCommentsView() {
-  const { tweetId } = useParams();
+  const { tid } = useParams();
   const [comments, setComments] = useState<Comment[]>([]);
   const [loading, setLoading] = useState(true);
   const [newComment, setNewComment] = useState('');
@@ -20,7 +20,7 @@ export default function TweetCommentsView() {
 
   const load = async () => {
     try {
-      const data = await getTweetComments(tweetId!);
+      const data = await getTweetComments(tid!);
       setComments(data.comments);
     } catch (err) {
       console.error('Error al cargar los comentarios:', err);
@@ -31,15 +31,17 @@ export default function TweetCommentsView() {
 
   useEffect(() => {
     load();
-  }, [tweetId]);
+  },[]);
 
   const handleSubmit = async (e: React.FormEvent) => {
+
     e.preventDefault();
+    console.log(tid)
     if (newComment.trim() === '') return;
 
     setPosting(true);
     try {
-      await createComment(tweetId!, newComment);
+      await createComment(tid!, newComment);
       setNewComment('');
       await load(); //aqui recargo los comentarios
     } catch (err) {

@@ -1,12 +1,12 @@
 import api from '.';
 
 export function setAuthToken(token: string) {
-	localStorage.setItem('authToken', token);
+	localStorage.setItem('token', token);
 	api.defaults.headers.common['x-access-token'] = token;
 }
 
 export function cleanAuthToken() {
-	localStorage.removeItem('authToken');
+	localStorage.removeItem('token');
 	delete api.defaults.headers.common['x-access-token'];
 }
 

@@ -31,14 +31,14 @@ export async function dislike(tweetId: string) {
 
 
 export async function getTweetComments(tweetId: string) {
-	const response = await api.get(`/tweets/${tweetId}`);
+	const response = await api.get(`/tweets/comments/${tweetId}`);
 	return response.data;
 }
 
 export async function createComment(tweetId: string, comment: string) {
   const response = await api.post('/tweets/comments', {
+    comment, 
     tweetId,
-    comment,
   });
   return response.data;
 }

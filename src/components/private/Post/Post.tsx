@@ -11,7 +11,7 @@ interface PostProps {
   media?: string | null;
   likes: number;
   children: string | React.ReactNode;
-    tweetId?: string
+  tweetId?: string
 }
 
 export function Post({
@@ -21,7 +21,8 @@ export function Post({
   time,
   media,
   likes,
-  children, tweetId,
+  children, 
+  tweetId,
 }: PostProps) {
   const [likeCount, setLikeCount] = useState(likes);
   const handleLike = async () => {
@@ -50,7 +51,7 @@ export function Post({
         <p>{children}</p>
         {media && <img src={media} alt="post-media" />}
         <div className={PCSS['post-actions']}>
-          <AButton icon="far fa-comment" count={0} tipo="comment" tweetId={ tweetId }/>
+          <AButton icon="far fa-comment" count={0} tipo="comment" tweetId={ id }/>
           <AButton icon="fas fa-retweet" count={0} tipo="retweet" />
           <AButton
             icon="far fa-heart"
