@@ -41,7 +41,7 @@ export default function TweetCommentsView() {
     try {
       await createComment(tweetId!, newComment);
       setNewComment('');
-      await load(); // aqui recargo los comentarios
+      await load(); //aqui recargo los comentarios
     } catch (err) {
       alert('Error al enviar comentario');
     } finally {
