@@ -1,18 +1,36 @@
-import ICSS from './index.module.css'
+import ICSS from './home.module.css'
 import Menu from '@components/private/Menu/Menu'
 import Post from '@components/private/Post/Post'
 import FollowCard from '@components/private/TwitterFollowCard/TwitterFollowCard'
 import logo_n from '@media/x_negro.png'
 import logo_b from '@media/x_blanco.png'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 interface type {
   mode: boolean
 }
 
-function Private({ mode }: type) { 
+function Home({ mode }: type) { 
 
+    const [seguir, setSeguir] = useState([{"_id": "",
+            "name": "",
+            "username": "",
+            "createdAt": "",
+            "updatedAt": ""}]);
     const logo = mode ? logo_b : logo_n
+
+    useEffect (() => {
+      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODA1OWNhODliOGY1MjgxMTA5ZmRmZTYiLCJpYXQiOjE3NDUyMDM5MzZ9.wMMC36dLS59WVfcDgRXJ_Zj-FY9wB_xHG0rxWefP27Y';
+
+      fetch("http://localhost:8083/api/users/", {
+        headers: {
+          "x-access-token": token
+        }
+      })
+        .then((res) => res.json())
+        .then((data) => setSeguir(data))
+        .catch((err) => console.error("❌ Error al cargar perfil:", err));
+    }, []);
 
     return (
       <main className={ICSS['container']}>
@@ -44,12 +62,13 @@ function Private({ mode }: type) {
         </section>
         <section className={ICSS['info-container']}>
           <div className={`${ICSS['follows-cards']} ${ICSS['item']}`}>
-            <FollowCard userName='jcarrenoa' initialIsFollowing={false}>Aaron Rodriguez</FollowCard>
-            <FollowCard userName='django' initialIsFollowing={true}>Django Python</FollowCard>
+            {seguir.map((user) => (
+              <FollowCard key={user._id} userName={user.username} initialIsFollowing={true}>{user.name}</FollowCard>
+            ))}
           </div>
         </section>
       </main>
     );
 }
 
-export default Private;
+export default Home;
