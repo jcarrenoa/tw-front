@@ -1,27 +1,47 @@
 import { useState } from 'react';
+import { createTweet } from '../../../http/tweets';
+import './CreatePostForm.module.css'
 
-const CreatePostForm = () => {
-  const [text, setText] = useState('');
+function CreatePostForm() {
+	const [content, setContent] = useState('');
+	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState('');
+	const [success, setSuccess] = useState(false);
 
-  const handlePost = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (text.trim()) {
-      console.log('Nueva publicación:', text);
-      setText('');
-    }
-  };
+	const handleSubmit = async (e: React.FormEvent) => {
+		e.preventDefault();
+		setLoading(true);
+		setError('');
+		setSuccess(false);
 
-  return (
-    <form onSubmit={handlePost}>
-      <textarea
-        rows={3}
-        placeholder="¿Qué está pasando?"
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-      />
-      <button type="submit">Publicar</button>
-    </form>
-  );
-};
+		try {
+			await createTweet(content);
+			setSuccess(true);
+			setContent('');
+		} catch (err) {
+			setError('No se pudo crear el tweet.');
+		} finally {
+			setLoading(false);
+		}
+	};
+
+	return (
+		<form onSubmit={handleSubmit}>
+			<h3>Crear Tweet</h3>
+			<textarea
+				value={content}
+				onChange={(e) => setContent(e.target.value)}
+				placeholder="¿Qué estás pensando?"
+				required
+			/>
+			<button type="submit" disabled={loading}>
+				{loading ? 'Creando...' : 'Publicar'}
+			</button>
+			{success && <p style={{ color: 'green' }}>Tweet publicado</p>}
+			{error && <p style={{ color: 'red' }}>{error}</p>}
+		</form>
+	);
+}
 
 export default CreatePostForm;
+
