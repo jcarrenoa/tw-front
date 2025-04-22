@@ -113,7 +113,9 @@ function OwnProfile({ mode, user, isLoading }: type) {
                   >
                     {post.content}
                   </Post>
-                  <button onClick={() => handleDelete(post._id)}>
+                  <button
+                    className={ICSS['delete-button']}
+                    onClick={() => handleDelete(post._id)}>
                     Eliminar
                   </button>
                 </div>
