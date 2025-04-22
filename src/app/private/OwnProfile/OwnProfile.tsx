@@ -1,7 +1,7 @@
 import ICSS from './Home.module.css';
 import Post from '@components/private/Post/Post';
 import { useEffect, useState } from 'react';
-import { postUser, createTweet } from '@http/tweets';
+import { postUser, createTweet, deleteTweet } from '@http/tweets';
 
 interface type {
   mode: boolean;
@@ -47,15 +47,8 @@ function OwnProfile({ mode, user, isLoading }: type) {
 
   const handleDelete = async (tweetId: string) => {
     try {
-      await fetch('/tweets', {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('token')}` // Ajusta esto si usas otra forma
-        },
-        body: JSON.stringify({ tweetId })
-      });
-      fetchPosts(); // Recargar la lista de publicaciones
+      await deleteTweet(tweetId);
+      fetchPosts(); // recarga los tweets después de eliminar
     } catch (err) {
       console.error('Error al eliminar el tweet:', err);
     }
