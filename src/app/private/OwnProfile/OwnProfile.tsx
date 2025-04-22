@@ -1,6 +1,6 @@
 import ICSS from './Home.module.css';
 import Post from '@components/private/Post/Post';
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState } from 'react';
 import { postUser, createTweet } from '@http/tweets';
 
 interface type {
@@ -12,7 +12,7 @@ interface type {
   isLoading: boolean;
 }
 
-function Home({ mode, user, isLoading }: type) {
+function OwnProfile({ mode, user, isLoading }: type) {
   const [posts, setPosts] = useState([
     {
       _id: '',
@@ -43,6 +43,22 @@ function Home({ mode, user, isLoading }: type) {
     await createTweet(tweet);
     setTweet('');
     fetchPosts();
+  };
+
+  const handleDelete = async (tweetId: string) => {
+    try {
+      await fetch('/tweets', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('token')}` // Ajusta esto si usas otra forma
+        },
+        body: JSON.stringify({ tweetId })
+      });
+      fetchPosts(); // Recargar la lista de publicaciones
+    } catch (err) {
+      console.error('Error al eliminar el tweet:', err);
+    }
   };
 
   return (
@@ -87,16 +103,20 @@ function Home({ mode, user, isLoading }: type) {
           <div className={`${ICSS['posts']} ${ICSS['item']}`}>
             {posts.map((post) => {
               return (
-                <Post
-                  key={post._id}
-                  id={post._id}
-                  user={post.user.name}
-                  userName={post.user.username}
-                  time={post.createdAt}
-                  likes={post.likes}
-                >
-                  {post.content}
-                </Post>
+                <div key={post._id} style={{ position: 'relative' }}>
+                  <Post
+                    id={post._id}
+                    user={post.user.name}
+                    userName={post.user.username}
+                    time={post.createdAt}
+                    likes={post.likes}
+                  >
+                    {post.content}
+                  </Post>
+                  <button onClick={() => handleDelete(post._id)}>
+                    Eliminar
+                  </button>
+                </div>
               );
             })}
           </div>
@@ -105,5 +125,4 @@ function Home({ mode, user, isLoading }: type) {
     </main>
   );
 }
-
-export default Home;
+export default OwnProfile;
