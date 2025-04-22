@@ -53,7 +53,7 @@ export function App() {
         />
         <Route path="/signup" element={<Register />} />
         <Route path="/recover-password" element={<Nomatch></Nomatch>} />
-        <Route path="/comments/:id" element={<Comments/>} />
+        <Route path="/comments/:tid" element={<Comments/>} />
         <Route path="*" element={<Nomatch />} />
       </Routes>
     </>

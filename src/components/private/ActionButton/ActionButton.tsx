@@ -14,6 +14,7 @@ export function ActionButton({ icon, count, tipo, tweetId, action }: ActionButto
 
     const handleClick = () => {
       if (action) action();
+      console.log('this is: ' + tweetId)
         if (tipo === 'comment') {
             navigate(`/comments/${tweetId}`)
         } else if (tipo === 'retweet') {
