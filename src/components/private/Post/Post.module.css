@@ -1,0 +1,34 @@
+.post {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
+
+.post-header{
+    display: flex;
+    gap: 0.5rem;
+}
+
+.img-user {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+}
+
+.post p {
+    margin: 5px 0px;
+}
+
+.post-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-top: 10px;
+    justify-content: space-between;
+}
+
+.post-container {
+    width: -webkit-fill-available;
+}

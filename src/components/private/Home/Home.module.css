@@ -1,0 +1,169 @@
+.logo {
+    width: 100%;
+    height: auto;
+    max-width: 30px;
+    margin: 0 auto;
+}
+
+.logo-container {
+    display: flex;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    max-width: 30px;
+    max-height: auto;
+    justify-content: left;
+    padding: 5px 10px;
+    align-items: center;
+    border-radius: 40px;
+    margin-left: 9px;
+    margin-bottom: 15px;
+}
+
+.logo-container:hover {
+    background-color: #cccccc1a;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 250px minmax(600px, 1fr) 300px;
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+.menu {
+    margin-top: 10px;
+}
+
+.followsCards {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+}
+
+/* The following styles are for the main content area */
+.post-list {
+    display: flex;
+    list-style: none;
+    justify-content: space-evenly;
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+  }
+
+  .post-list li {
+    padding: 10px 20px;
+    cursor: pointer;
+    position: relative;
+    font-weight: 500;
+    color: #657786;
+    max-width: auto;
+    flex: 1;
+    text-align: center;
+  }
+
+  .post-list li.active {
+    color: var(--text-color);
+    font-weight: bold;
+  }
+
+  .post-list li.active::after {
+    display: flex;
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -1px;
+    height: 3px;
+    width: 30%;
+    text-align: center;
+    background-color: #1DA1F2; /* Azul Twitter-like */
+    border-radius: 2px;
+  }
+
+.post-list li:hover {
+    background-color: #ffffff33; /* Azul Twitter-like */
+    transition: ease-in-out 0.3s;
+}
+
+.item {
+    border: 1px solid #ffffff3b; /* Borde alrededor */
+}
+
+.posts {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-right: 15px;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.info-container .item {
+    border-radius: 10px;
+    padding: 10px 20px;
+}
+
+.follows-cards {
+    display: flex; 
+    flex-direction: column;
+    gap:15px;
+}
+
+.img-user {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+    border: 1px solid #ffffff3b; /* Borde alrededor */
+}
+
+.text-area {
+    height: 100px;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    resize: none;
+    outline: none;
+    font-size: 16px;
+    color: white;
+    line-height: 1.5;
+  }
+
+  .text-area::placeholder {
+    color: #8899a6;
+    font-size: 20px; /* 🔍 Cambia el tamaño del texto del placeholder */
+  }
+
+.btn-post {
+    background: var(--text-color);
+    color: var(--bg-color);
+    border: None;
+    border-radius: 1.5rem;
+    min-height: 2rem;
+    min-width: 5.3rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: .2s ease-in-out;
+    
+}
+
+.write-post {
+    display: flex;
+    flex-direction: row;
+    padding: 15px;
+    gap: 1rem;
+    
+}
+
+.write-post-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: end;
+    width: 100%;
+}
