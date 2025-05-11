@@ -1,0 +1,48 @@
+.form {
+    background-color: transparent;
+    color: var(--text-color);
+    min-width: 30%;
+}
+  
+.input {
+    display: block;
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: var(--hover-bg);
+    border: none;
+    border-radius: 5px;
+    color: var(--text-color);
+}
+  
+.btn {
+    background-color: #1d9bf0;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+  
+.btn:hover {
+    background-color: #1a8cd8;
+}
+  
+.no-register {
+    text-decoration: none;
+    color: inherit; 
+    color: var(--text-color);
+}
+
+.btn-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.contenedor {
+    display: flex;
+    justify-content: center;
+    min-width: 60%;
+}
