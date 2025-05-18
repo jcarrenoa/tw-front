@@ -1,4 +1,4 @@
-import ICSS from './home.module.css'
+import ICSS from './Home.module.css'
 import Menu from '@components/private/Menu/Menu'
 import Post from '@components/private/Post/Post'
 import FollowCard from '@components/private/TwitterFollowCard/TwitterFollowCard'
