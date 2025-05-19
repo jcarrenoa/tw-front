@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { createTweet } from '../../../http/tweets';
 import './CreatePostForm.module.css'
+import * as Sentry from '@sentry/react';
 
 function CreatePostForm() {
 	const [content, setContent] = useState('');
@@ -18,7 +19,8 @@ function CreatePostForm() {
 			await createTweet(content);
 			setSuccess(true);
 			setContent('');
-		} catch (err) {
+		} catch (error) {
+			Sentry.captureException(error);
 			setError('No se pudo crear el tweet.');
 		} finally {
 			setLoading(false);

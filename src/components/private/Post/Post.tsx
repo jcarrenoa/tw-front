@@ -2,6 +2,7 @@ import PCSS from './Post.module.css';
 import AButton from '@components/private/ActionButton/ActionButton';
 import { like } from '@/http/tweets';
 import { useState } from 'react';
+import * as Sentry from '@sentry/react';
 
 interface PostProps {
   id: string;
@@ -30,7 +31,7 @@ export function Post({
       const response = await like(id);
       setLikeCount((prev) => prev + 1);
     } catch (error) {
-      console.log('error', error);
+      Sentry.captureException(error);
     }
   };
 
