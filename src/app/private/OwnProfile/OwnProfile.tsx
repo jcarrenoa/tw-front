@@ -2,6 +2,7 @@ import ICSS from './Home.module.css';
 import Post from '@components/private/Post/Post';
 import { useEffect, useState } from 'react';
 import { postUser, createTweet } from '@http/tweets';
+import * as Sentry from '@sentry/react';
 
 interface type {
   mode: boolean;
@@ -57,7 +58,7 @@ function OwnProfile({ mode, user, isLoading }: type) {
       });
       fetchPosts(); // Recargar la lista de publicaciones
     } catch (err) {
-      console.error('Error al eliminar el tweet:', err);
+      Sentry.captureException(err);
     }
   };
 
