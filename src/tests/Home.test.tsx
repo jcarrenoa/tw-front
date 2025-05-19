@@ -28,7 +28,7 @@ describe('Home component', () => {
 
   it('debe renderizar FollowCard con datos de fetch', async () => {
     render(<Home mode={false} />);
-    
+
     await waitFor(() => {
       expect(screen.getByText('Alice')).toBeInTheDocument();
       expect(screen.getByText('Bob')).toBeInTheDocument();
