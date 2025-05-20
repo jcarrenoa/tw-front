@@ -2,6 +2,7 @@ import React from 'react';
 import LRFCSS from './Login.module.css';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router';
+import * as Sentry from '@sentry/react';
 
 interface Props {
   setLogin: (username: string, password: string) => Promise<any>;
@@ -23,10 +24,12 @@ export function Login({ setLogin }: Props) {
         navigate('/');
       }
       if (response.status === 500) {
+        Sentry.captureException(response);
         alert('Error en el servidor');
       }
     } catch (error) {
-      alert('Error en el servidor');
+      Sentry.captureException(error);
+      alert('Error al iniciar sesión. Por favor, verifica tus credenciales.');
     }
   };
 

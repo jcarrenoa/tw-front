@@ -45,7 +45,7 @@ export function App() {
           path="/"
           element={
             isLogged ? (
-              <Home mode={darkMode} user={user} isLoading={isLoading}></Home>
+              <Home mode={darkMode} user={user} isLoading={isLoading} logout={logoutUser}></Home>
             ) : (
               <Login setLogin={loginUser} />
             )

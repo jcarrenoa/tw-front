@@ -4,10 +4,11 @@ import Post from '@components/private/Post/Post';
 import FollowCard from '@components/private/TwitterFollowCard/TwitterFollowCard';
 import logo_n from '@media/x_negro.png';
 import logo_b from '@media/x_blanco.png';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { allUsers } from '@http/user';
 import { postUser, createTweet } from '@http/tweets';
-import { useMemo } from 'react';
+import SentryErrorBoundary from '@components/SentryErrorBoundary';
+import { useFeatureIsOn } from '@growthbook/growthbook-react';
 
 interface type {
   mode: boolean;
@@ -16,9 +17,10 @@ interface type {
     username: string;
   } | null;
   isLoading: boolean;
+  logout: () => void;
 }
 
-function Home({ mode, user, isLoading }: type) {
+function Home({ mode, user, isLoading, logout }: type) {
   const [users, setUsers] = useState([
     { _id: '', name: '', username: '', createdAt: '', updatedAt: '' },
   ]);
@@ -42,7 +44,6 @@ function Home({ mode, user, isLoading }: type) {
   }, [users]);
 
   const [tweet, setTweet] = useState('');
-
   const logo = mode ? logo_b : logo_n;
 
   const fetchUsers = async () => {
@@ -54,6 +55,8 @@ function Home({ mode, user, isLoading }: type) {
     const aux = await postUser();
     setPosts(aux);
   };
+
+  const showPosts = useFeatureIsOn("show-posts");
 
   useEffect(() => {
     fetchUsers();
@@ -74,8 +77,9 @@ function Home({ mode, user, isLoading }: type) {
         <div className={ICSS['logo-container']}>
           <img className={ICSS['logo']} src={logo} alt="logo-x" />
         </div>
-        <Menu />
+        <Menu logoutUser={logout}/>
       </header>
+
       <section className={ICSS['post-container']}>
         <header className={ICSS['item']}>
           <ul className={ICSS['post-list']}>
@@ -83,6 +87,7 @@ function Home({ mode, user, isLoading }: type) {
             <li>Siguiendo</li>
           </ul>
         </header>
+
         <div className={`${ICSS['tweet-box']} ${ICSS['item']}`}>
           <img
             className={ICSS['img']}
@@ -110,32 +115,36 @@ function Home({ mode, user, isLoading }: type) {
             </form>
           </div>
         </div>
+
         {isLoading ? (
           <div>Loading...</div>
-        ) : (
-          <div className={`${ICSS['posts']} ${ICSS['item']}`}>
-            {posts.map((post) => {
-              return (
-                <Post
-                  key={post._id}
-                  id={post._id}
-                  user={post.user.name}
-                  userName={post.user.username}
-                  time={post.createdAt}
-                  likes={post.likes}
-                >
-                  {post.content}
-                </Post>
-              );
-            })}
-          </div>
-        )}
+          ) : showPosts ? (
+            <SentryErrorBoundary>
+              <div className={`${ICSS['posts']} ${ICSS['item']}`}>
+                {posts.map((post) => (
+                  <Post
+                    key={post._id}
+                    id={post._id}
+                    user={post.user.name}
+                    userName={post.user.username}
+                    time={post.createdAt}
+                    likes={post.likes}
+                  >
+                    {post.content}
+                  </Post>
+                ))}
+              </div>
+            </SentryErrorBoundary>
+          ) : (
+            <div className={ICSS['item']}>Los posts están desactivados temporalmente.</div>
+          )}
       </section>
+
       <section className={`${ICSS['info-container']} ${ICSS['item']}`}>
         <h2>Personas para seguir</h2>
-        <div className={ICSS['follows-cards']}>
-          {suggestedUsers.map((user) => {
-            return (
+        <SentryErrorBoundary>
+          <div className={ICSS['follows-cards']}>
+            {suggestedUsers.map((user) => (
               <FollowCard
                 key={user._id}
                 userName={user.username}
@@ -143,9 +152,9 @@ function Home({ mode, user, isLoading }: type) {
               >
                 {user.name}
               </FollowCard>
-            );
-          })}
-        </div>
+            ))}
+          </div>
+        </SentryErrorBoundary>
       </section>
     </main>
   );

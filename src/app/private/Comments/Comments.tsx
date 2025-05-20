@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/react';
 import React, { useEffect, useState } from 'react';
 import { getTweetComments } from '../../../http/tweets';
 import { createComment } from '../../../http/tweets';
@@ -44,8 +45,9 @@ export default function TweetCommentsView() {
       await createComment(tid!, newComment);
       setNewComment('');
       await load(); //aqui recargo los comentarios
-    } catch (err) {
+    } catch (error) {
       alert('Error al enviar comentario');
+      Sentry.captureException(error);
     } finally {
       setPosting(false);
     }
