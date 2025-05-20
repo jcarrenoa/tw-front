@@ -1,10 +1,8 @@
-// Home.test.tsx
 import { screen, waitFor } from '@testing-library/react';
 import Home from '@/components/private/Home/Home';
 import { vi } from 'vitest';
 import { render } from './testing.utils'; // Importamos nuestra versión personalizada
 
-// Mock global para fetch
 global.fetch = vi.fn(() =>
   Promise.resolve({
     json: () => Promise.resolve([
@@ -14,7 +12,6 @@ global.fetch = vi.fn(() =>
   })
 ) as unknown as typeof fetch;
 
-// Mock para localStorage
 Object.defineProperty(window, 'localStorage', {
   value: {
     getItem: vi.fn(),
@@ -31,8 +28,7 @@ describe('Home component', () => {
 
   it('debe renderizar FollowCard con datos de fetch', async () => {
     render(<Home mode={false} />);
-    
-    // Esperamos a que los datos se carguen y se muestren los nombres
+
     await waitFor(() => {
       expect(screen.getByText('Alice')).toBeInTheDocument();
       expect(screen.getByText('Bob')).toBeInTheDocument();

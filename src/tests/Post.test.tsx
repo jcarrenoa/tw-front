@@ -1,5 +1,3 @@
-
-// Post.test.tsx
 import { screen } from '@testing-library/react';
 import Post from '@/components/private/Post/Post';
 import { vi } from 'vitest';
