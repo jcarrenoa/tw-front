@@ -2,11 +2,18 @@ import MCSS from './Menu.module.css';
 import { useState } from 'react';
 import { MenuButton } from '../MenuButton/MenuButton';
 
-export function Menu() {
+interface MenuButtonProps {
+    logoutUser: () => void;
+}
+
+export function Menu({logoutUser}: MenuButtonProps) {
     const [selected, setSelected] = useState('Home');
 
     const handleSelected = (text: string) => {
         setSelected(text);
+        if (text === 'Logout') {
+            logoutUser();
+        }
     };
 
     return (
@@ -17,6 +24,7 @@ export function Menu() {
             <MenuButton icon='fas fa-envelope' text='Messages' selected={selected} OnSelected={handleSelected}></MenuButton>
             <MenuButton icon='fas fa-bookmark' text='Bookmarks' selected={selected} OnSelected={handleSelected}></MenuButton>
             <MenuButton icon='fas fa-list' text='Lists' selected={selected} OnSelected={handleSelected}></MenuButton>
+            <MenuButton icon='fas fa-user' text='Logout' selected={selected} OnSelected={handleSelected}></MenuButton>
         </div>
     )
 }
