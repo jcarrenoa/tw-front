@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import LRFCSS from './Register.module.css';
 import { Link } from 'react-router';
+import { register } from '@http/user'
 
 const Register = () => {
   const [registerEmail, setRegisterEmail] = useState('');
@@ -9,9 +10,20 @@ const Register = () => {
   const [registerUsername, setRegisterUsername] = useState('');
   const [registerConfirmPassword, setRegisterConfirmPassword] = useState('');
 
-  const handleRegister = (e: React.FormEvent) => {
+  const handleRegister = async(e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Registrando con', registerEmail, registerPassword);
+    try {
+      console.log('Registering user...');
+      console.log('Name:', registerName);
+      console.log('Username:', registerUsername);
+      console.log('Email:', registerEmail);
+      console.log('Password:', registerPassword);
+      console.log('Confirm Password:', registerConfirmPassword);
+      await register(registerName, registerEmail, registerUsername, registerPassword, registerConfirmPassword);
+    } catch (e) {
+      alert(`Error ${e}`);
+      return;
+    }
   };
 
   const handleLogin = () => {
@@ -27,7 +39,6 @@ const Register = () => {
       alert('Por favor, completa todos los campos');
       return;
     }
-
   };
 
   return (
