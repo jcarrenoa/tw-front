@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite'
+import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react'
 import path from 'path'
 import { fileURLToPath } from 'url'
@@ -19,5 +19,10 @@ export default defineConfig({
       '@media': path.resolve(__dirname, './src/assets/media'),
       '@http': path.resolve(__dirname, './src/http'),
     }
-  }
+  },
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: './src/tests/setup.ts', // si tienes un archivo de setup
+  },
 })
